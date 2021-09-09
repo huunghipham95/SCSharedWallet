@@ -165,16 +165,6 @@ let executeTransaction = async function(subject, sgs, to, value, data, operation
     return executeTransactionWithSigner(signer, subject, sgs, to, value, data, operation, executor, opts)
 }
 
-getBalance(accounts[0].address)
-.then(()=> {
-    return executeTransaction('executeTransaction withdraw 0.5 ETH', [accounts[1], accounts[0]], accounts[0].address, web3.utils.toWei("0.5", 'ether'), "0x", CALL, accounts[0], {
-        gasToken: accounts[0].address,
-        refundReceiver: accounts[0].address
-    })
-})
-.then(()=> getBalance(accounts[0].address))
-
-
 async function getBalance(address) {
     try{
         let balance = await web3.eth.getBalance(address)
